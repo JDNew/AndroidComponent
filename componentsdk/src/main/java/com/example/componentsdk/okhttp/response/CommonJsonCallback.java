@@ -84,7 +84,7 @@ public class CommonJsonCallback implements Callback {
                         mListener.onSuccess(result);
                     } else {
                         Gson gson = new Gson();
-                        Object object = gson.fromJson(responseObj.toString(), mClass);
+                        Object object = gson.fromJson((String) responseObj, mClass);
                         if (object != null) {
                             mListener.onSuccess(object);
                         } else {

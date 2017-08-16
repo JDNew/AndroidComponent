@@ -61,6 +61,7 @@ public class HomeActiivty extends BaseActivity implements View.OnClickListener {
         home_image_view.setBackgroundResource(R.drawable.comui_tab_home_selected);
 
 
+
     }
 
     @Override

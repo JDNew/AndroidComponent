@@ -1,6 +1,7 @@
 package com.example.componentsdk.okhttp;
 
 import com.example.componentsdk.okhttp.https.HttpsUtils;
+import com.example.componentsdk.okhttp.listener.DisposeDataHandle;
 import com.example.componentsdk.okhttp.response.CommonJsonCallback;
 
 import java.util.concurrent.TimeUnit;
@@ -41,10 +42,21 @@ public class CommonOkhttpClient {
 
     }
 
-    public static Call sendRequest(Request request , CommonJsonCallback callback){
+    /**
+     * 通过构造好的Request,Callback去发送请求
+     *
+     * @param request
+     * @param handle
+     */
+    public static Call get(Request request, DisposeDataHandle handle) {
         Call call = mOkHttpClient.newCall(request);
-        call.enqueue(callback);
+        call.enqueue(new CommonJsonCallback(handle));
+        return call;
+    }
 
+    public static Call post(Request request, DisposeDataHandle handle) {
+        Call call = mOkHttpClient.newCall(request);
+        call.enqueue(new CommonJsonCallback(handle));
         return call;
     }
 }
